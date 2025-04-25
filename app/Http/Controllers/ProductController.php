@@ -9,8 +9,24 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Product::with('images')->get();
+        // Fetch all products with their images
+        $products = Product::with('images')->paginate(10);
+
+        return view('products.index', compact('products'));
     }
+
+
+    public function create()
+    {
+        return view('products.create');
+    }
+
+    public function adminView()
+    {
+        $products = Product::with('images')->get();
+        return view('admin.products', compact('products'));
+    }
+
 
     public function store(Request $request)
     {

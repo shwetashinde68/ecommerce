@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin/products', [ProductController::class, 'adminView']);
+Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products', [ProductController::class, 'index']);
